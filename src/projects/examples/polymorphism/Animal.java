@@ -2,13 +2,14 @@ package projects.examples.polymorphism;
 
 public interface Animal {
     /* Notes about interfaces:
-     * 1.   Interfaces cannot be used to create objects.
+     * 1.   Interfaces cannot directly be used to create objects.
      *      However their are ways to create objects from interfaces
      *      without making a new class. An example will be in the Main.class
-     * 2.   Interfaces do not have constructors. Unlike Abstract classes,
-     *      that can have constructors.
+     *      Interfaces do not have constructors. Unlike the Abstract class,
+     *      that can have a constructor.
      *
-     * 3.   Any "attributes" aka variables
+     *
+     * 2.   Any "attributes" aka variables
      *      defined in an interface is
      *      automatically public static final.
      *      Which means that only one instance
@@ -30,7 +31,7 @@ public interface Animal {
 
 
     /*
-     * 4.   Any methods defined in an interface are defined
+     * 3.   Any methods defined in an interface are defined
      *      based on their access modifier, and/or them being static.
      *      For example a non-static method, the default access modifier is abstract:
      *      for Abstract methods you only need to provide the method with
