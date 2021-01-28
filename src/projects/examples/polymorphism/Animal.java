@@ -69,6 +69,6 @@ public interface Animal {
      This method can only be used within this interface.
     */
     private boolean hasKnownBreed(){
-        return UNKNOWN_BREED.equals(getAnimalBreed());
+        return !UNKNOWN_BREED.equals(this.getAnimalBreed());
     }
 }

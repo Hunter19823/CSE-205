@@ -1,16 +1,16 @@
 package projects.examples.polymorphism;
 
-public class Dog implements Animal {
+public class Cat implements Animal {
     private final String breed;
     private String name;
 
-    public Dog(String breed)
+    public Cat(String breed)
     {
         this.breed = breed;
         this.name = Animal.DEFAULT_NAME;
     }
 
-    public Dog(String breed, String name)
+    public Cat(String breed, String name)
     {
         this.breed = breed;
         this.name = name;
@@ -44,6 +44,6 @@ public class Dog implements Animal {
     @Override
     public String getAnimalType()
     {
-        return "Dog";
+        return "Cat";
     }
 }
