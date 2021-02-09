@@ -1,4 +1,4 @@
-package projects.week6.guis;
+package projects.week6.guis.leftright;
 
 import javax.swing.*;
 

@@ -1,4 +1,4 @@
-package projects.week6.guis;
+package projects.week6.guis.leftright;
 
 import javax.swing.*;
 import java.awt.*;
@@ -25,6 +25,8 @@ public class LeftRightPanel extends JPanel {
         buttonPanel.setBackground(Color.blue);
         buttonPanel.add(left);
         buttonPanel.add(right);
+
+
 
         setPreferredSize(new Dimension(200,80));
         setBackground(Color.cyan);
