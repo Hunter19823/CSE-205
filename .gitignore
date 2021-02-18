@@ -2,3 +2,6 @@
 *.kotlin_module
 *.class
 *.class
+/src/projects/homework/
+/src/projects/practice/
+/src/projects/testing/
