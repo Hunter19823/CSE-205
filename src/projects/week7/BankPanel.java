@@ -1,11 +1,7 @@
 package projects.week7;
 
 
-import javax.swing.JPanel;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-import javax.swing.JButton;
-import javax.swing.plaf.basic.BasicOptionPaneUI;
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,30 +11,47 @@ public class BankPanel extends JPanel {
     private JTextField aname, anumber, abalance, astatus, aamount;
     private JButton deposit, create, withdraw;
     private BankAccount newAccount;
+    //private int counter = 0;
+    private JTextArea textArea;
+    private Bank bofj; // Bank of Java. Snare Snare Symbol
 
     public BankPanel()
     {
         // Setup Components
+
+        // JLabels
         name  = new JLabel("Account name: ");
         number  = new JLabel("Account number: ");
         status  = new JLabel("Account status: ");
         amount  = new JLabel("Account amount: ");
         balance  = new JLabel("Account balance: ");
 
-        aname = new JTextField(10);
-        anumber = new JTextField(10);
-        astatus = new JTextField(10);
-        aamount = new JTextField(10);
-        abalance = new JTextField(10);
+        // JTextFields
+        aname = new JTextField(20);
+        anumber = new JTextField(20);
+        astatus = new JTextField(20);
+        aamount = new JTextField(20);
+        abalance = new JTextField(20);
 
+        // JButtons
         deposit = new JButton("Deposit");
         withdraw = new JButton("Withdraw");
         create = new JButton("Create New Account");
+        // JTextAreas
+        textArea = new JTextArea(15,20);
+        // JScrollPanes
+        JScrollPane scrollPane = new JScrollPane(textArea);
 
         // Create listeners.
         deposit.addActionListener(new ButtonListener());
         withdraw.addActionListener(new ButtonListener());
         create.addActionListener(new ButtonListener());
+
+        // Change Editable Status
+        astatus.setEditable(false);
+        textArea.setEditable(false);
+
+
 
         add(name);
         add(aname);
@@ -53,9 +66,12 @@ public class BankPanel extends JPanel {
         add(withdraw);
         add(amount);
         add(aamount);
+        add(textArea);
+        add(scrollPane);
 
+        bofj = new Bank();
         setBackground(Color.CYAN);
-        setPreferredSize(new Dimension(225,300));
+        setPreferredSize(new Dimension(225,700));
     }
 
     private class ButtonListener implements ActionListener
@@ -64,18 +80,54 @@ public class BankPanel extends JPanel {
         public void actionPerformed(ActionEvent event)
         {
             Object source = event.getSource();
+            newAccount = new BankAccount(
+                    Integer.parseInt(anumber.getText()),
+                    Double.parseDouble(abalance.getText()),
+                    aname.getText()
+            );
+            setBackground(Color.CYAN);
+            int existingBankLocation = bofj.find(Integer.parseInt(anumber.getText()));
+
             if (create == (source)) {
-                newAccount = new BankAccount(
-                        Integer.parseInt(anumber.getText()),
-                        Double.parseDouble(abalance.getText()),
-                        aname.getText()
-                        );
+                if(existingBankLocation == -1)
+                {
+                    bofj.addAccount(newAccount);
+                    if(Double.parseDouble(abalance.getText()) >= 0)
+                    {
+                        astatus.setText("Good");
+                    }else{
+                        astatus.setText("No Good");
+                        setBackground(Color.RED);
+                    }
+                }
             } else if (deposit == (source)) {
-                newAccount.deposit(Double.parseDouble(aamount.getText()));
+                bofj.depositToBank(Double.parseDouble(aamount.getText()),existingBankLocation);
+                if(bofj.checkBalance(existingBankLocation))
+                {
+                    astatus.setText("Good");
+                }else{
+                    astatus.setText("No Good");
+                    setBackground(Color.RED);
+                }
             } else if (withdraw == (source)) {
-                newAccount.withdraw(Double.parseDouble(aamount.getText()));
+                bofj.withdrawFromBank(Double.parseDouble(aamount.getText()),existingBankLocation);
+                if(bofj.checkBalance(existingBankLocation))
+                {
+                    astatus.setText("Good");
+                }else{
+                    astatus.setText("No Good");
+                    setBackground(Color.RED);
+                }
             }
-            abalance.setText(Double.toString(newAccount.getBalance()));
+            printAccounts();
+        }
+
+        public void printAccounts()
+        {
+            textArea.setText("");
+            textArea.append("Name\tNum\tBal\n");
+            textArea.append("-".repeat(15)+"\n");
+            textArea.append(bofj.toString());
         }
     }
 
