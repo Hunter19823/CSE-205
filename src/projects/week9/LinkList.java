@@ -1,5 +1,7 @@
 package projects.week9;
 
+
+
 public class LinkList<TYPE> {
 
     public static void main(String[] args)
