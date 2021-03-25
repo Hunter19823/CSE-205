@@ -2,13 +2,10 @@ package projects.week11;
 
 import java.sql.*;
 
-import org.postgresql.Driver;
-
 public class DataBase {
     public static void main( String[] args )
     {
         Connection connection = null;
-
         try{
             Class.forName("org.postgresql.Driver");
             connection = DriverManager.getConnection(
@@ -40,7 +37,7 @@ public class DataBase {
         // SELECT
         select(connection);
 
-        // Close the connection once we are finished 
+        // Close the connection once we are finished
         try {
             if(connection != null)
                 connection.close();
@@ -89,7 +86,7 @@ public class DataBase {
                         "ADDRESS, "+
                         "SALARY"+
                     ") ";
-            sqlCommand += String.format("VALUES( %d, '%s', %d, '%s', %.2f",id,name,age,address,salary);
+            sqlCommand += String.format("VALUES( %d, '%s', %d, '%s', %.2f);",id,name,age,address,salary);
             statement.executeUpdate(sqlCommand);
             statement.close();
             connection.commit();
