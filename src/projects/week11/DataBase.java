@@ -149,6 +149,7 @@ public class DataBase {
                     "UPDATE company set SALARY = 30000.00 where ID = 1;";
             statement.executeUpdate(sqlCommand);
             connection.commit();
+            statement.close();
             System.out.println("Data Updated...");
 
 
@@ -173,6 +174,7 @@ public class DataBase {
                     "DELETE from company where ID = 1;";
             statement.executeUpdate(sqlCommand);
             connection.commit();
+            statement.close();
             System.out.println("Data Deleted...");
 
 
