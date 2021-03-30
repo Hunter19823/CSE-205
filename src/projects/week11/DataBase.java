@@ -35,7 +35,51 @@ public class DataBase {
 
 
         // SELECT
-        select(connection);
+        //select(connection);
+
+        // UPDATE
+//        Statement statement = null;
+//        try{
+//            connection.setAutoCommit(false);
+//            statement = connection.createStatement();
+//            String sqlCommand =
+//                    "UPDATE company set SALARY = 30000.00 where ID = 1;";
+//            statement.executeUpdate(sqlCommand);
+//            connection.commit();
+//            System.out.println("Data Updated...");
+//
+//
+//            select(connection);
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//            System.exit(0);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            System.err.println("Catch all Exception occurred: "+e.getClass().getName()+": "+e.getMessage());
+//            System.exit(0);
+//        }
+
+        // DELETE
+        Statement statement = null;
+        try{
+            connection.setAutoCommit(false);
+            statement = connection.createStatement();
+            String sqlCommand =
+                    "DELETE from company where ID = 1;";
+            statement.executeUpdate(sqlCommand);
+            connection.commit();
+            System.out.println("Data Deleted...");
+
+
+            select(connection);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.exit(0);
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.err.println("Catch all Exception occurred: "+e.getClass().getName()+": "+e.getMessage());
+            System.exit(0);
+        }
 
         // Close the connection once we are finished
         try {
@@ -121,7 +165,7 @@ public class DataBase {
             }
             resultSet.close();
             statement.close();
-            System.out.println("Data Inserted...");
+            System.out.println("Data Selected...");
         } catch (SQLException e) {
             e.printStackTrace();
             System.exit(0);
