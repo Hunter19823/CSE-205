@@ -1,0 +1,31 @@
+-A self-balancing binary search tree
+-Each node has an extra bit, which represents its color (red or black).
+-Several Properties:
+    - Root Property: The root is black.
+    - External Property: Every external node is black.
+    - Red Property: The children  of a red node are black.
+    - Depth Property: All external nodes have the same black depth.
+
+Resource for viewing red/black tree transformations:
+https://www.cs.usfca.edu/~galles/visualization/RedBlack.html
+Following Along:
+Add a 3
+Add a 1
+Add a 5
+Add a 7
+Add a 6
+Add a 8
+Add a 9
+Add a 10
+Add a 2
+Add a 4
+Remove 6
+Remove 8
+Remove 1
+Remove 3
+Remove 2
+Remove 4
+Remove 9
+Remove 7
+Remove 5
+Remove 10
